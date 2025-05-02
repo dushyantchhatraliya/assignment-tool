@@ -202,7 +202,7 @@
         <!-- Sidebar -->
         <div class="hidden md:flex md:flex-col md:w-64 bg-white shadow-sm">
             <div class="p-4 flex items-center">
-                <span class="font-['Pacifico'] text-primary text-2xl">EduConnect</span>
+                <span class="font-['Pacifico'] text-primary text-2xl">Assignment</span>
             </div>
             <div class="p-4">
                 <div class="flex items-center gap-3 mb-6">
@@ -210,27 +210,33 @@
                         <i class="ri-user-line text-primary ri-lg"></i>
                     </div>
                     <div>
-                        <p class="font-medium">Emily Johnson</p>
+                        <p class="font-medium">Assignment-Tool</p>
                         <div class="flex items-center text-sm text-gray-500">
-                            <span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Teacher</span>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Student</span>
                         </div>
                     </div>
                 </div>
             </div>
             <nav class="flex-1 px-2 py-4 space-y-1 overflow-y-auto custom-scrollbar">
-                <a href="https://readdy.ai/home/b8e20487-1c5f-4382-bb15-ebd7a3c4d48a/c7194a38-0291-4ef5-acc3-195b70ab57d1" data-readdy="true" class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg">
+                <a href="{{ route('dashboard') }}"
+                   class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg
+                          {{ request()->routeIs('dashboard') ? 'text-primary bg-primary/10' : 'text-gray-600 hover:bg-gray-100' }}">
                     <div class="w-6 h-6 mr-3 flex items-center justify-center">
                         <i class="ri-dashboard-line"></i>
                     </div>
                     Dashboard
                 </a>
-                <a href="#" class="flex items-center px-4 py-2.5 text-sm font-medium text-primary bg-primary/10 rounded-lg">
+            
+                <a href="{{ route('students.index') }}"
+                   class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg
+                          {{ request()->routeIs('students.index') ? 'text-primary bg-primary/10' : 'text-gray-600 hover:bg-gray-100' }}">
                     <div class="w-6 h-6 mr-3 flex items-center justify-center">
                         <i class="ri-user-line"></i>
                     </div>
                     Students
                 </a>
             </nav>
+            
             <div class="p-4 border-t">
                 <a href="#" class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg">
                     <div class="w-6 h-6 mr-3 flex items-center justify-center">
@@ -283,14 +289,14 @@
                         </div>
                         <div class="relative ml-2">
                             <button type="button" class="flex items-center text-sm rounded-full focus:outline-none">
-                                <img class="h-8 w-8 rounded-full object-cover" src="https://readdy.ai/api/search-image?query=professional%2520portrait%2520of%2520a%2520female%2520teacher%2520with%2520brown%2520hair%252C%2520warm%2520smile%252C%2520business%2520casual%2520attire%252C%2520neutral%2520background%252C%2520high%2520quality%252C%2520photorealistic&width=200&height=200&seq=teacher1&orientation=squarish" alt="User">
+                                <img class="h-8 w-8 rounded-full object-cover" src="#" alt="User">
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="border-b border-gray-200 px-4 py-2 flex items-center overflow-x-auto custom-scrollbar">
                     <div class="flex space-x-4">
-                        <a href="https://readdy.ai/home/b8e20487-1c5f-4382-bb15-ebd7a3c4d48a/c7194a38-0291-4ef5-acc3-195b70ab57d1" data-readdy="true" class="whitespace-nowrap px-3 py-2 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300">Overview</a>
+                        <a href="#" data-readdy="true" class="whitespace-nowrap px-3 py-2 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300">Overview</a>
                         <button class="whitespace-nowrap px-3 py-2 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300">Class 8A</button>
                         <button class="whitespace-nowrap px-3 py-2 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300">Class 9B</button>
                         <button class="whitespace-nowrap px-3 py-2 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300">Class 10C</button>
@@ -306,7 +312,7 @@
                     <nav class="flex mb-5" aria-label="Breadcrumb">
                         <ol class="inline-flex items-center space-x-1 md:space-x-3">
                             <li class="inline-flex items-center">
-                                <a href="https://readdy.ai/home/b8e20487-1c5f-4382-bb15-ebd7a3c4d48a/c7194a38-0291-4ef5-acc3-195b70ab57d1" data-readdy="true" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-primary">
+                                <a href="{{ route('dashboard') }}" data-readdy="true" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-primary">
                                     <div class="w-4 h-4 mr-2 flex items-center justify-center">
                                         <i class="ri-dashboard-line"></i>
                                     </div>
@@ -350,7 +356,7 @@
                                             <i class="ri-search-line"></i>
                                         </div>
                                     </div>
-                                    <input type="text" class="bg-gray-50 border-none text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 focus:ring-2 focus:ring-primary/20 focus:outline-none" placeholder="Search by name, ID, class, or email...">
+                                    <input type="text" id="searchInput" class="bg-gray-50 border-none text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 focus:ring-2 focus:ring-primary/20 focus:outline-none" placeholder="Search by student name, student email, contact number">
                                 </div>
                             </div>
                             <div class="flex flex-wrap gap-3">
@@ -436,601 +442,19 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr class="hover:bg-gray-50 cursor-pointer" data-student-id="1">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <label class="custom-checkbox">
-                                                <input type="checkbox" class="custom-checkbox-input student-checkbox">
-                                                <span class="sr-only">Select student</span>
-                                            </label>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full object-cover" src="https://readdy.ai/api/search-image?query=portrait%2520of%2520a%2520teenage%2520boy%2520student%2520with%2520brown%2520hair%252C%2520smiling%252C%2520school%2520uniform%252C%2520classroom%2520background%252C%2520high%2520quality%252C%2520photorealistic&width=200&height=200&seq=student1&orientation=squarish" alt="Student">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Michael Anderson</div>
-                                                    <div class="text-sm text-gray-500">michael.anderson@example.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">STU-2025-001</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Class 8A</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-full bg-gray-200 rounded-full h-2.5 mr-2 max-w-[100px]">
-                                                    <div class="bg-primary h-2.5 rounded-full" style="width: 85%"></div>
-                                                </div>
-                                                <span class="text-sm text-gray-900">85%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">92%</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">+1 (555) 123-4567</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Active
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <div class="flex justify-end space-x-2">
-                                                <button class="text-gray-500 hover:text-primary" title="Edit">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-edit-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-primary" title="Message">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-message-2-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-gray-700" title="More">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-more-2-line"></i>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50 cursor-pointer" data-student-id="2">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <label class="custom-checkbox">
-                                                <input type="checkbox" class="custom-checkbox-input student-checkbox">
-                                                <span class="sr-only">Select student</span>
-                                            </label>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full object-cover" src="https://readdy.ai/api/search-image?query=portrait%2520of%2520a%2520teenage%2520girl%2520student%2520with%2520long%2520dark%2520hair%252C%2520smiling%252C%2520school%2520uniform%252C%2520classroom%2520background%252C%2520high%2520quality%252C%2520photorealistic&width=200&height=200&seq=student2&orientation=squarish" alt="Student">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Sophia Williams</div>
-                                                    <div class="text-sm text-gray-500">sophia.williams@example.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">STU-2025-002</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Class 9B</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-full bg-gray-200 rounded-full h-2.5 mr-2 max-w-[100px]">
-                                                    <div class="bg-primary h-2.5 rounded-full" style="width: 72%"></div>
-                                                </div>
-                                                <span class="text-sm text-gray-900">72%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">85%</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">+1 (555) 234-5678</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                On Leave
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <div class="flex justify-end space-x-2">
-                                                <button class="text-gray-500 hover:text-primary" title="Edit">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-edit-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-primary" title="Message">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-message-2-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-gray-700" title="More">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-more-2-line"></i>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50 cursor-pointer" data-student-id="3">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <label class="custom-checkbox">
-                                                <input type="checkbox" class="custom-checkbox-input student-checkbox">
-                                                <span class="sr-only">Select student</span>
-                                            </label>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full object-cover" src="https://readdy.ai/api/search-image?query=portrait%2520of%2520a%2520teenage%2520girl%2520student%2520with%2520blonde%2520hair%252C%2520smiling%252C%2520school%2520uniform%252C%2520classroom%2520background%252C%2520high%2520quality%252C%2520photorealistic&width=200&height=200&seq=student3&orientation=squarish" alt="Student">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Emma Johnson</div>
-                                                    <div class="text-sm text-gray-500">emma.johnson@example.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">STU-2025-003</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Class 8A</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-full bg-gray-200 rounded-full h-2.5 mr-2 max-w-[100px]">
-                                                    <div class="bg-primary h-2.5 rounded-full" style="width: 78%"></div>
-                                                </div>
-                                                <span class="text-sm text-gray-900">78%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">95%</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">+1 (555) 345-6789</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Active
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <div class="flex justify-end space-x-2">
-                                                <button class="text-gray-500 hover:text-primary" title="Edit">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-edit-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-primary" title="Message">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-message-2-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-gray-700" title="More">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-more-2-line"></i>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50 cursor-pointer" data-student-id="4">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <label class="custom-checkbox">
-                                                <input type="checkbox" class="custom-checkbox-input student-checkbox">
-                                                <span class="sr-only">Select student</span>
-                                            </label>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full object-cover" src="https://readdy.ai/api/search-image?query=portrait%2520of%2520a%2520teenage%2520boy%2520student%2520with%2520dark%2520hair%252C%2520smiling%252C%2520school%2520uniform%252C%2520classroom%2520background%252C%2520high%2520quality%252C%2520photorealistic&width=200&height=200&seq=student4&orientation=squarish" alt="Student">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Noah Davis</div>
-                                                    <div class="text-sm text-gray-500">noah.davis@example.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">STU-2025-004</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Class 10C</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-full bg-gray-200 rounded-full h-2.5 mr-2 max-w-[100px]">
-                                                    <div class="bg-primary h-2.5 rounded-full" style="width: 65%"></div>
-                                                </div>
-                                                <span class="text-sm text-gray-900">65%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">88%</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">+1 (555) 456-7890</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Active
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <div class="flex justify-end space-x-2">
-                                                <button class="text-gray-500 hover:text-primary" title="Edit">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-edit-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-primary" title="Message">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-message-2-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-gray-700" title="More">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-more-2-line"></i>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50 cursor-pointer" data-student-id="5">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <label class="custom-checkbox">
-                                                <input type="checkbox" class="custom-checkbox-input student-checkbox">
-                                                <span class="sr-only">Select student</span>
-                                            </label>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full object-cover" src="https://readdy.ai/api/search-image?query=portrait%2520of%2520a%2520teenage%2520girl%2520student%2520with%2520dark%2520hair%252C%2520glasses%252C%2520smiling%252C%2520school%2520uniform%252C%2520classroom%2520background%252C%2520high%2520quality%252C%2520photorealistic&width=200&height=200&seq=student5&orientation=squarish" alt="Student">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Olivia Martinez</div>
-                                                    <div class="text-sm text-gray-500">olivia.martinez@example.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">STU-2025-005</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Class 11A</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-full bg-gray-200 rounded-full h-2.5 mr-2 max-w-[100px]">
-                                                    <div class="bg-primary h-2.5 rounded-full" style="width: 92%"></div>
-                                                </div>
-                                                <span class="text-sm text-gray-900">92%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">97%</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">+1 (555) 567-8901</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Active
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <div class="flex justify-end space-x-2">
-                                                <button class="text-gray-500 hover:text-primary" title="Edit">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-edit-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-primary" title="Message">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-message-2-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-gray-700" title="More">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-more-2-line"></i>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50 cursor-pointer" data-student-id="6">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <label class="custom-checkbox">
-                                                <input type="checkbox" class="custom-checkbox-input student-checkbox">
-                                                <span class="sr-only">Select student</span>
-                                            </label>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full object-cover" src="https://readdy.ai/api/search-image?query=portrait%2520of%2520a%2520teenage%2520boy%2520student%2520with%2520blonde%2520hair%252C%2520smiling%252C%2520school%2520uniform%252C%2520classroom%2520background%252C%2520high%2520quality%252C%2520photorealistic&width=200&height=200&seq=student6&orientation=squarish" alt="Student">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Liam Thompson</div>
-                                                    <div class="text-sm text-gray-500">liam.thompson@example.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">STU-2025-006</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Class 8A</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-full bg-gray-200 rounded-full h-2.5 mr-2 max-w-[100px]">
-                                                    <div class="bg-primary h-2.5 rounded-full" style="width: 68%"></div>
-                                                </div>
-                                                <span class="text-sm text-gray-900">68%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">82%</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">+1 (555) 678-9012</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Active
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <div class="flex justify-end space-x-2">
-                                                <button class="text-gray-500 hover:text-primary" title="Edit">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-edit-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-primary" title="Message">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-message-2-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-gray-700" title="More">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-more-2-line"></i>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50 cursor-pointer" data-student-id="7">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <label class="custom-checkbox">
-                                                <input type="checkbox" class="custom-checkbox-input student-checkbox">
-                                                <span class="sr-only">Select student</span>
-                                            </label>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full object-cover" src="https://readdy.ai/api/search-image?query=portrait%2520of%2520a%2520teenage%2520girl%2520student%2520with%2520red%2520hair%252C%2520smiling%252C%2520school%2520uniform%252C%2520classroom%2520background%252C%2520high%2520quality%252C%2520photorealistic&width=200&height=200&seq=student7&orientation=squarish" alt="Student">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Ava Wilson</div>
-                                                    <div class="text-sm text-gray-500">ava.wilson@example.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">STU-2025-007</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Class 9B</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-full bg-gray-200 rounded-full h-2.5 mr-2 max-w-[100px]">
-                                                    <div class="bg-primary h-2.5 rounded-full" style="width: 75%"></div>
-                                                </div>
-                                                <span class="text-sm text-gray-900">75%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">90%</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">+1 (555) 789-0123</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Active
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <div class="flex justify-end space-x-2">
-                                                <button class="text-gray-500 hover:text-primary" title="Edit">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-edit-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-primary" title="Message">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-message-2-line"></i>
-                                                    </div>
-                                                </button>
-                                                <button class="text-gray-500 hover:text-gray-700" title="More">
-                                                    <div class="w-6 h-6 flex items-center justify-center">
-                                                        <i class="ri-more-2-line"></i>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                   
                                 </tbody>
                             </table>
                         </div>
                         
                         <!-- Pagination -->
                         <div class="px-6 py-3 flex items-center justify-between border-t border-gray-200">
-                            <div class="flex-1 flex justify-between sm:hidden">
-                                <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 !rounded-button whitespace-nowrap">
-                                    Previous
-                                </button>
-                                <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 !rounded-button whitespace-nowrap">
-                                    Next
-                                </button>
-                            </div>
-                            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                                <div>
-                                    <p class="text-sm text-gray-700">
-                                        Showing <span class="font-medium">1</span> to <span class="font-medium">7</span> of <span class="font-medium">128</span> students
-                                    </p>
-                                </div>
-                                <div>
-                                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                                        <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                            <span class="sr-only">Previous</span>
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-arrow-left-s-line"></i>
-                                            </div>
-                                        </button>
-                                        <button aria-current="page" class="z-10 bg-primary text-white relative inline-flex items-center px-4 py-2 border border-primary text-sm font-medium">
-                                            1
-                                        </button>
-                                        <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                                            2
-                                        </button>
-                                        <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium">
-                                            3
-                                        </button>
-                                        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
-                                            ...
-                                        </span>
-                                        <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium">
-                                            18
-                                        </button>
-                                        <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                            <span class="sr-only">Next</span>
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-arrow-right-s-line"></i>
-                                            </div>
-                                        </button>
-                                    </nav>
-                                </div>
-                            </div>
+                            <p class="text-sm text-gray-700 pagination-info"></p>
+                            <div class="pagination-nav flex space-x-1"></div>
                         </div>
+                        
                     </div>
-
-                    <!-- Quick Stats Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                        <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                                    <div class="w-6 h-6 flex items-center justify-center text-primary">
-                                        <i class="ri-user-line"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-500">Total Students</p>
-                                    <h3 class="text-2xl font-bold text-gray-900">128</h3>
-                                </div>
-                            </div>
-                            <div class="mt-4 flex items-center text-sm">
-                                <div class="w-4 h-4 flex items-center justify-center text-green-500 mr-1">
-                                    <i class="ri-arrow-up-line"></i>
-                                </div>
-                                <span class="text-green-500 font-medium">3.2%</span>
-                                <span class="text-gray-500 ml-1">from last month</span>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                                    <div class="w-6 h-6 flex items-center justify-center text-blue-600">
-                                        <i class="ri-bar-chart-line"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-500">Average Performance</p>
-                                    <h3 class="text-2xl font-bold text-gray-900">76%</h3>
-                                </div>
-                            </div>
-                            <div class="mt-4 flex items-center text-sm">
-                                <div class="w-4 h-4 flex items-center justify-center text-green-500 mr-1">
-                                    <i class="ri-arrow-up-line"></i>
-                                </div>
-                                <span class="text-green-500 font-medium">2.5%</span>
-                                <span class="text-gray-500 ml-1">from last semester</span>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                                    <div class="w-6 h-6 flex items-center justify-center text-green-600">
-                                        <i class="ri-calendar-check-line"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-500">Attendance Rate</p>
-                                    <h3 class="text-2xl font-bold text-gray-900">92%</h3>
-                                </div>
-                            </div>
-                            <div class="mt-4 flex items-center text-sm">
-                                <div class="w-4 h-4 flex items-center justify-center text-green-500 mr-1">
-                                    <i class="ri-arrow-up-line"></i>
-                                </div>
-                                <span class="text-green-500 font-medium">1.8%</span>
-                                <span class="text-gray-500 ml-1">from last month</span>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
-                                    <div class="w-6 h-6 flex items-center justify-center text-amber-600">
-                                        <i class="ri-flag-line"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-500">At-Risk Students</p>
-                                    <h3 class="text-2xl font-bold text-gray-900">12</h3>
-                                </div>
-                            </div>
-                            <div class="mt-4 flex items-center text-sm">
-                                <div class="w-4 h-4 flex items-center justify-center text-red-500 mr-1">
-                                    <i class="ri-arrow-up-line"></i>
-                                </div>
-                                <span class="text-red-500 font-medium">2.1%</span>
-                                <span class="text-gray-500 ml-1">from last month</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Performance Distribution Chart -->
-                    <div class="bg-white rounded-lg shadow-sm p-4 mb-6 border border-gray-100">
-                        <div class="flex items-center justify-between mb-4">
-                            <h2 class="text-lg font-medium text-gray-900">Performance Distribution</h2>
-                            <div class="relative">
-                                <button class="text-gray-400 hover:text-gray-500 flex items-center text-sm">
-                                    All Classes
-                                    <div class="w-4 h-4 ml-1 flex items-center justify-center">
-                                        <i class="ri-arrow-down-s-line"></i>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="h-80" id="performance-distribution-chart"></div>
-                    </div>
+                    
                 </div>
             </main>
         </div>
@@ -1338,7 +762,7 @@
 
                     <div>
                         <label for="dateOfBirth" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
-                        <input type="date" id="date_of_birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required>
+                        <input type="date" id="date_of_birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
                     </div>
                    
                     <div>
@@ -1365,12 +789,12 @@
                     
                     <div>
                         <label for="enrollmentDate" class="block text-sm font-medium text-gray-700 mb-1">Performance</label>
-                        <input type="number" min="0" id="performance" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required>
+                        <input type="number" min="0" id="performance" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
                     </div>
 
                     <div>
                         <label for="enrollmentDate" class="block text-sm font-medium text-gray-700 mb-1">Attendance</label>
-                        <input type="number" min="0" id="attendance" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required>
+                        <input type="number" min="0" id="attendance" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
                     </div>
                 </div>
 
@@ -1774,5 +1198,174 @@
             }
         });
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function (e) {
+        e.preventDefault();
+    
+        const submitBtn = this.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Submitting...';
+    
+        // Clear previous validation errors
+        const fields = ['student_name', 'date_of_birth', 'contact', 'class', 'performance', 'attendance', 'address'];
+        const storeStudentUrl = "{{ route('students.store') }}";
+        
+        fields.forEach(id => {
+            const input = document.getElementById(id);
+            input.classList.remove('border-red-500');
+            const oldError = input.parentElement.querySelector('.error-message');
+            if (oldError) oldError.remove();
+        });
+    
+        const formData = {
+            student_name: document.getElementById('student_name').value,
+            date_of_birth: document.getElementById('date_of_birth').value,
+            contact: document.getElementById('contact').value,
+            class: document.getElementById('class').value,
+            performance: document.getElementById('performance').value,
+            attendance: document.getElementById('attendance').value,
+            address: document.getElementById('address').value,
+        };
+    
+        axios.post(storeStudentUrl, formData)
+            .then(res => {
+                alert(res.data.message);
+                e.target.reset();
+                fetchStudents();
+            })
+            .catch(err => {
+                if (err.response && err.response.status === 422) {
+                    const errors = err.response.data.errors;
+                    for (let field in errors) {
+                        const input = document.getElementById(field);
+                        if (input) {
+                            input.classList.add('border-red-500');
+                            const errorMsg = document.createElement('p');
+                            errorMsg.classList.add('text-red-500', 'text-xs', 'mt-1', 'error-message');
+                            errorMsg.innerText = errors[field][0];
+                            input.parentElement.appendChild(errorMsg);
+                        }
+                    }
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Add Student';
+            });
+    });
+    </script>
+    
+    <script>
+        function fetchStudents(page = 1,search = '') {
+            const tableBody = document.querySelector('tbody');
+            const paginationInfo = document.querySelector('.pagination-info');
+            const paginationNav = document.querySelector('.pagination-nav');
+        
+            axios.get(`/api/students?page=${page}&search=${encodeURIComponent(search)}`)
+                .then(res => {
+                    const students = res.data.data;
+                    const pag = res.data.pagination;
+        
+                    // Clear old table rows
+                    tableBody.innerHTML = '';
+        
+                    // Render new rows
+                    students.forEach(student => {
+    const performance = student.performance ?? 0;
+    const status = student.status?.toLowerCase(); // assuming you receive status from backend
+
+    const statusBadge = status === 'pending'
+        ? `<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>`
+        : `<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Approved</span>`;
+
+    const tr = document.createElement('tr');
+    tr.className = "hover:bg-gray-50 cursor-pointer";
+    tr.innerHTML = `
+        <td class="px-6 py-4 whitespace-nowrap">
+            <label class="custom-checkbox">
+                <input type="checkbox" class="custom-checkbox-input student-checkbox">
+            </label>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                    <img class="h-10 w-10 rounded-full object-cover" src="https://readdy.ai/api/search-image?query=portrait%2520of%2520a%2520teenage%2520boy%2520student%2520with%2520brown%2520hair%252C%2520smiling%252C%2520school%2520uniform%252C%2520classroom%2520background%252C%2520high%2520quality%252C%2520photorealistic&width=200&height=200&seq=student1&orientation=squarish" alt="Student">
+                </div>
+                <div class="ml-4">
+                    <div class="text-sm font-medium text-gray-900">${student.student_name}</div>
+                    <div class="text-sm text-gray-500">${student.student_email ?? '-'}</div>
+                </div>
+            </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">${student.id}</td>
+        <td class="px-6 py-4 whitespace-nowrap">${student.class}</td>
+        <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mr-2 max-w-[100px]">
+                    <div class="bg-primary h-2.5 rounded-full" style="width: ${performance}%"></div>
+                </div>
+                <span class="text-sm text-gray-900">${performance}%</span>
+            </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">${student.attendance ?? '0'}%</td>
+        <td class="px-6 py-4 whitespace-nowrap">${student.contact}</td>
+        <td class="px-6 py-4 whitespace-nowrap">${statusBadge}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <div class="flex justify-end space-x-2">
+                <button title="Edit"><i class="ri-edit-line"></i></button>
+                <button title="Message"><i class="ri-message-2-line"></i></button>
+                <button title="More"><i class="ri-more-2-line"></i></button>
+            </div>
+        </td>
+    `;
+    tableBody.appendChild(tr);
+});
+
+        
+                    // Update pagination text
+                    paginationInfo.innerHTML = `
+                        Showing ${(pag.current_page - 1) * pag.per_page + 1}
+                        to ${Math.min(pag.current_page * pag.per_page, pag.total)}
+                        of ${pag.total} students
+                    `;
+        
+                    // Update pagination buttons
+                    paginationNav.innerHTML = '';
+                    for (let i = 1; i <= pag.last_page; i++) {
+                        const btn = document.createElement('button');
+                        btn.className = `px-3 py-1 border ${i === pag.current_page ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`;
+                        btn.innerText = i;
+                        btn.addEventListener('click', () => fetchStudents(i));
+                        paginationNav.appendChild(btn);
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchStudents();
+        });
+        </script>
+        
+        <script>
+            let searchTimeout = null;
+
+            document.getElementById('searchInput').addEventListener('input', function () {
+                clearTimeout(searchTimeout);
+
+                searchTimeout = setTimeout(() => {
+                    fetchStudents(1, this.value); // pass page 1 and search query
+                }, 300); // debounce delay
+            });
+
+            </script>
+
 </body>
 </html>

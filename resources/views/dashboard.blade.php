@@ -218,20 +218,25 @@
                 </div>
             </div>
             <nav class="flex-1 px-2 py-4 space-y-1 overflow-y-auto custom-scrollbar">
-                <a href="{{ route('dashboard') }}" data-readdy="true" class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg">
+                <a href="{{ route('dashboard') }}"
+                   class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg
+                          {{ request()->routeIs('dashboard') ? 'text-primary bg-primary/10' : 'text-gray-600 hover:bg-gray-100' }}">
                     <div class="w-6 h-6 mr-3 flex items-center justify-center">
                         <i class="ri-dashboard-line"></i>
                     </div>
                     Dashboard
                 </a>
-                <a href="{{ route('students.index') }}" class="flex items-center px-4 py-2.5 text-sm font-medium text-primary bg-primary/10 rounded-lg">
+            
+                <a href="{{ route('students.index') }}"
+                   class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg
+                          {{ request()->routeIs('students.index') ? 'text-primary bg-primary/10' : 'text-gray-600 hover:bg-gray-100' }}">
                     <div class="w-6 h-6 mr-3 flex items-center justify-center">
                         <i class="ri-user-line"></i>
                     </div>
                     Students
                 </a>
-               
             </nav>
+            
             <div class="p-4 border-t">
                 <a href="#" class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg">
                     <div class="w-6 h-6 mr-3 flex items-center justify-center">
@@ -795,391 +800,72 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Performance Distribution Chart
-            const performanceDistributionChart = echarts.init(document.getElementById('performance-distribution-chart'));
-            const performanceDistributionOption = {
-                animation: false,
-                tooltip: {
-                    trigger: 'axis',
-                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                    borderColor: '#E5E7EB',
-                    textStyle: {
-                        color: '#1F2937'
-                    }
-                },
-                legend: {
-                    data: ['Class 8A', 'Class 9B', 'Class 10C', 'Class 11A'],
-                    bottom: 0,
-                    textStyle: {
-                        color: '#1F2937'
-                    }
-                },
-                grid: {
-                    left: '3%',
-                    right: '3%',
-                    top: '3%',
-                    bottom: '15%',
-                    containLabel: true
-                },
-                xAxis: {
-                    type: 'category',
-                    data: ['<60%', '60-70%', '70-80%', '80-90%', '90-100%'],
-                    axisLine: {
-                        lineStyle: {
-                            color: '#E5E7EB'
-                        }
-                    },
-                    axisLabel: {
-                        color: '#6B7280'
-                    }
-                },
-                yAxis: {
-                    type: 'value',
-                    name: 'Number of Students',
-                    nameTextStyle: {
-                        color: '#6B7280'
-                    },
-                    axisLine: {
-                        show: false
-                    },
-                    axisLabel: {
-                        color: '#6B7280'
-                    },
-                    splitLine: {
-                        lineStyle: {
-                            color: '#F3F4F6'
-                        }
-                    }
-                },
-                series: [
-                    {
-                        name: 'Class 8A',
-                        type: 'bar',
-                        data: [2, 5, 12, 8, 5],
-                        itemStyle: {
-                            color: 'rgba(87, 181, 231, 1)',
-                            borderRadius: [4, 4, 0, 0]
-                        },
-                        emphasis: {
-                            itemStyle: {
-                                opacity: 0.8
-                            }
-                        }
-                    },
-                    {
-                        name: 'Class 9B',
-                        type: 'bar',
-                        data: [3, 7, 10, 6, 4],
-                        itemStyle: {
-                            color: 'rgba(141, 211, 199, 1)',
-                            borderRadius: [4, 4, 0, 0]
-                        },
-                        emphasis: {
-                            itemStyle: {
-                                opacity: 0.8
-                            }
-                        }
-                    },
-                    {
-                        name: 'Class 10C',
-                        type: 'bar',
-                        data: [1, 6, 9, 10, 6],
-                        itemStyle: {
-                            color: 'rgba(251, 191, 114, 1)',
-                            borderRadius: [4, 4, 0, 0]
-                        },
-                        emphasis: {
-                            itemStyle: {
-                                opacity: 0.8
-                            }
-                        }
-                    },
-                    {
-                        name: 'Class 11A',
-                        type: 'bar',
-                        data: [0, 4, 8, 12, 10],
-                        itemStyle: {
-                            color: 'rgba(252, 141, 98, 1)',
-                            borderRadius: [4, 4, 0, 0]
-                        },
-                        emphasis: {
-                            itemStyle: {
-                                opacity: 0.8
-                            }
-                        }
-                    }
-                ]
-            };
-            performanceDistributionChart.setOption(performanceDistributionOption);
-
-            // Student Performance Chart (for modal)
-            if (document.getElementById('student-performance-chart')) {
-                const studentPerformanceChart = echarts.init(document.getElementById('student-performance-chart'));
-                const studentPerformanceOption = {
-                    animation: false,
-                    tooltip: {
-                        trigger: 'axis',
-                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                        borderColor: '#E5E7EB',
-                        textStyle: {
-                            color: '#1F2937'
-                        }
-                    },
-                    legend: {
-                        data: ['Current Term', 'Previous Term'],
-                        bottom: 0,
-                        textStyle: {
-                            color: '#1F2937'
-                        }
-                    },
-                    grid: {
-                        left: '3%',
-                        right: '3%',
-                        top: '3%',
-                        bottom: '15%',
-                        containLabel: true
-                    },
-                    xAxis: {
-                        type: 'category',
-                        data: ['Math', 'Science', 'English', 'History', 'Geography', 'Art'],
-                        axisLine: {
-                            lineStyle: {
-                                color: '#E5E7EB'
-                            }
-                        },
-                        axisLabel: {
-                            color: '#6B7280'
-                        }
-                    },
-                    yAxis: {
-                        type: 'value',
-                        max: 100,
-                        axisLine: {
-                            show: false
-                        },
-                        axisLabel: {
-                            color: '#6B7280',
-                            formatter: '{value}%'
-                        },
-                        splitLine: {
-                            lineStyle: {
-                                color: '#F3F4F6'
-                            }
-                        }
-                    },
-                    series: [
-                        {
-                            name: 'Current Term',
-                            type: 'bar',
-                            data: [85, 78, 92, 75, 80, 88],
-                            itemStyle: {
-                                color: 'rgba(87, 181, 231, 1)',
-                                borderRadius: [4, 4, 0, 0]
+        document.addEventListener('DOMContentLoaded', () => {
+            const chartEl = document.getElementById('performance-distribution-chart');
+            const performanceChart = echarts.init(chartEl);
+        
+            const loadChart = (classFilter = '') => {
+                fetch(`api/chart/performance?class=${encodeURIComponent(classFilter)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const option = {
+                            tooltip: {
+                                trigger: 'axis',
+                                backgroundColor: 'rgba(255,255,255,0.8)',
+                                borderColor: '#E5E7EB',
+                                textStyle: { color: '#1F2937' }
                             },
-                            emphasis: {
+                            legend: {
+                                data: data.series.map(s => s.name),
+                                bottom: 0,
+                                textStyle: { color: '#1F2937' }
+                            },
+                            grid: {
+                                left: '3%', right: '3%', top: '3%', bottom: '15%',
+                                containLabel: true
+                            },
+                            xAxis: {
+                                type: 'category',
+                                data: data.xAxis,
+                                axisLine: { lineStyle: { color: '#E5E7EB' } },
+                                axisLabel: { color: '#6B7280' }
+                            },
+                            yAxis: {
+                                type: 'value',
+                                name: 'Number of Students',
+                                axisLine: { show: false },
+                                axisLabel: { color: '#6B7280' },
+                                splitLine: { lineStyle: { color: '#F3F4F6' } }
+                            },
+                            series: data.series.map(s => ({
+                                name: s.name,
+                                type: 'bar',
+                                data: s.data,
                                 itemStyle: {
-                                    opacity: 0.8
+                                    color: s.color,
+                                    borderRadius: [4, 4, 0, 0]
+                                },
+                                emphasis: {
+                                    itemStyle: { opacity: 0.8 }
                                 }
-                            }
-                        },
-                        {
-                            name: 'Previous Term',
-                            type: 'bar',
-                            data: [70, 73, 89, 77, 75, 85],
-                            itemStyle: {
-                                color: 'rgba(251, 191, 114, 1)',
-                                borderRadius: [4, 4, 0, 0]
-                            },
-                            emphasis: {
-                                itemStyle: {
-                                    opacity: 0.8
-                                }
-                            }
-                        }
-                    ]
-                };
-                studentPerformanceChart.setOption(studentPerformanceOption);
-            }
-
-            // Student Attendance Chart (for modal)
-            if (document.getElementById('student-attendance-chart')) {
-                const studentAttendanceChart = echarts.init(document.getElementById('student-attendance-chart'));
-                const studentAttendanceOption = {
-                    animation: false,
-                    tooltip: {
-                        trigger: 'item',
-                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                        borderColor: '#E5E7EB',
-                        textStyle: {
-                            color: '#1F2937'
-                        }
-                    },
-                    legend: {
-                        orient: 'horizontal',
-                        bottom: 0,
-                        textStyle: {
-                            color: '#1F2937'
-                        }
-                    },
-                    series: [
-                        {
-                            name: 'Attendance',
-                            type: 'pie',
-                            radius: ['40%', '70%'],
-                            avoidLabelOverlap: false,
-                            itemStyle: {
-                                borderRadius: 8,
-                                borderColor: '#fff',
-                                borderWidth: 2
-                            },
-                            label: {
-                                show: false,
-                                position: 'center'
-                            },
-                            emphasis: {
-                                label: {
-                                    show: true,
-                                    fontSize: '16',
-                                    fontWeight: 'bold'
-                                }
-                            },
-                            labelLine: {
-                                show: false
-                            },
-                            data: [
-                                { value: 92, name: 'Present', itemStyle: { color: 'rgba(87, 181, 231, 1)' } },
-                                { value: 5, name: 'Absent', itemStyle: { color: 'rgba(252, 141, 98, 1)' } },
-                                { value: 3, name: 'Late', itemStyle: { color: 'rgba(251, 191, 114, 1)' } }
-                            ]
-                        }
-                    ]
-                };
-                studentAttendanceChart.setOption(studentAttendanceOption);
-            }
-
-            // Resize charts when window size changes
-            window.addEventListener('resize', function() {
-                performanceDistributionChart.resize();
-                if (document.getElementById('student-performance-chart')) {
-                    studentPerformanceChart.resize();
-                }
-                if (document.getElementById('student-attendance-chart')) {
-                    studentAttendanceChart.resize();
-                }
-            });
-        });
-
-        // Custom Checkbox Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const customCheckboxes = document.querySelectorAll('.custom-checkbox-input');
-            customCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('click', function() {
-                    this.checked = !this.checked;
-                });
-            });
-
-            // Select All Students checkbox
-            const selectAllCheckbox = document.getElementById('selectAllStudents');
-            const studentCheckboxes = document.querySelectorAll('.student-checkbox');
-            
-            if (selectAllCheckbox) {
-                selectAllCheckbox.addEventListener('click', function() {
-                    const isChecked = this.checked;
-                    studentCheckboxes.forEach(checkbox => {
-                        checkbox.checked = isChecked;
+                            }))
+                        };
+                        performanceChart.setOption(option);
                     });
-                });
-            }
-        });
-
-        // Student Profile Modal
-        document.addEventListener('DOMContentLoaded', function() {
-            const studentRows = document.querySelectorAll('tr[data-student-id]');
-            const studentModal = document.getElementById('studentProfileModal');
-            const studentModalOverlay = document.getElementById('studentModalOverlay');
-            const closeStudentModalBtn = document.getElementById('closeStudentModal');
-            
-            studentRows.forEach(row => {
-                row.addEventListener('click', function(e) {
-                    // Don't open modal if clicking on checkboxes or action buttons
-                    if (e.target.closest('.custom-checkbox') || e.target.closest('button')) {
-                        return;
-                    }
-                    
-                    studentModal.style.display = 'block';
-                    studentModalOverlay.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Initialize charts if they exist
-                    if (window.echarts) {
-                        if (document.getElementById('student-performance-chart')) {
-                            window.echarts.getInstanceByDom(document.getElementById('student-performance-chart')).resize();
-                        }
-                        if (document.getElementById('student-attendance-chart')) {
-                            window.echarts.getInstanceByDom(document.getElementById('student-attendance-chart')).resize();
-                        }
-                    }
-                });
+            };
+        
+            // Initial load
+            loadChart();
+        
+            // On dropdown change
+            document.getElementById('classFilter').addEventListener('change', function () {
+                loadChart(this.value);
             });
-            
-            if (closeStudentModalBtn) {
-                closeStudentModalBtn.addEventListener('click', function() {
-                    studentModal.style.display = 'none';
-                    studentModalOverlay.style.display = 'none';
-                    document.body.style.overflow = '';
-                });
-            }
-            
-            if (studentModalOverlay) {
-                studentModalOverlay.addEventListener('click', function() {
-                    studentModal.style.display = 'none';
-                    studentModalOverlay.style.display = 'none';
-                    document.body.style.overflow = '';
-                });
-            }
+        
+            // Resize on window resize
+            window.addEventListener('resize', () => performanceChart.resize());
         });
-
-        // Add Student Modal
-        document.addEventListener('DOMContentLoaded', function() {
-            const addStudentBtn = document.getElementById('addStudentBtn');
-            const addStudentModal = document.getElementById('addStudentModal');
-            const addStudentModalOverlay = document.getElementById('addStudentModalOverlay');
-            const closeAddStudentModalBtn = document.getElementById('closeAddStudentModal');
-            const cancelAddStudentBtn = document.getElementById('cancelAddStudent');
-            
-            if (addStudentBtn) {
-                addStudentBtn.addEventListener('click', function() {
-                    addStudentModal.style.display = 'block';
-                    addStudentModalOverlay.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                });
-            }
-            
-            if (closeAddStudentModalBtn) {
-                closeAddStudentModalBtn.addEventListener('click', function() {
-                    addStudentModal.style.display = 'none';
-                    addStudentModalOverlay.style.display = 'none';
-                    document.body.style.overflow = '';
-                });
-            }
-            
-            if (cancelAddStudentBtn) {
-                cancelAddStudentBtn.addEventListener('click', function() {
-                    addStudentModal.style.display = 'none';
-                    addStudentModalOverlay.style.display = 'none';
-                    document.body.style.overflow = '';
-                });
-            }
-            
-            if (addStudentModalOverlay) {
-                addStudentModalOverlay.addEventListener('click', function() {
-                    addStudentModal.style.display = 'none';
-                    addStudentModalOverlay.style.display = 'none';
-                    document.body.style.overflow = '';
-                });
-            }
-        });
-    </script>
+        </script>
+        
 </body>
 </html>

@@ -16,21 +16,48 @@ class StudentController extends Controller
     }
 
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:students,email',
-        'age' => 'required|integer|min:1',
-        'username' => 'required|string|max:255',
-        'class' => 'nullable|string|max:100',
-        'performance' => 'nullable|string',
-        'attendance' => 'nullable|integer|min:0|max:100',
-        'contact' => 'nullable|string|max:20'
-    ]);
-
-    $student = Students::create($validated);
-
-    return response()->json(['message' => 'Student created successfully', 'student' => $student], 201);
-}
-
+    {
+        $validated = $request->validate([
+            'student_name' => 'required|string|max:255',
+           'date_of_birth' => 'required|date|before:' . now()->subYears(5)->toDateString(),
+            'contact' => 'required|min:10|max:10',
+            'class' => 'required|integer|between:1,12',
+            'performance' => 'required|numeric|min:0|max:100',
+            'attendance' => 'required|numeric|min:0|max:100',
+            'address' => 'required|string|max:255',
+        ]);
+    
+        $getEmail = User::select('email')->where('name', $request->student_name)->first();
+        $validated['student_email'] = $getEmail->email ?? '';
+        Students::create($validated);
+    
+        return response()->json(['message' => 'Student added successfully.']);
+    }
+    
+    public function studentGet(Request $request)
+    {
+        $query = Students::query();
+    
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('student_name', 'like', "%{$search}%")
+                  ->orWhere('contact', 'like', "%{$search}%")
+                  ->orWhere('student_email', 'like', "%{$search}%"); // make sure email field exists
+            });
+        }
+    
+        $students = $query->orderBy('id', 'desc')->paginate(10);
+    
+        return response()->json([
+            'data' => $students->items(),
+            'pagination' => [
+                'current_page' => $students->currentPage(),
+                'last_page' => $students->lastPage(),
+                'per_page' => $students->perPage(),
+                'total' => $students->total(),
+            ]
+        ]);
+    }
+    
+    
 }
