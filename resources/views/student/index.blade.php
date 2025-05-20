@@ -745,19 +745,13 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
 
                     <div>
-                        <label for="gender" class="block text-sm font-medium text-gray-700 mb-1">Student Name</label>
-                        <div class="relative">
-                            <select id="student_name" name="student_name"
-                                class="appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
-                                <option value="">Select Student</option>
-                                @foreach ($students as $student)
-                                                <option value="{{ $student->name }}">{{ ucwords($student->name) }}</option>
-                                            @endforeach
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
-                                <i class="ri-arrow-down-s-line text-lg"></i>
-                            </div>
-                        </div>
+                        <label for="student_name" class="block text-sm font-medium text-gray-700 mb-1">Student Name</label>
+                            <input type="text" id="student_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="Enter Student Name">
+                    </div>
+
+                    <div>
+                        <label for="student_email" class="block text-sm font-medium text-gray-700 mb-1">Student Email</label>
+                            <input type="text" id="student_email" name="student_email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="Enter Student Email">
                     </div>
 
                     <div>
@@ -795,6 +789,20 @@
                     <div>
                         <label for="enrollmentDate" class="block text-sm font-medium text-gray-700 mb-1">Attendance</label>
                         <input type="number" min="0" id="attendance" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
+                    </div>
+
+                    <div>
+                        <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <div class="relative">
+                            <select id="status" name="status"
+                                class="appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
+                                <i class="ri-arrow-down-s-line text-lg"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1210,7 +1218,7 @@
         submitBtn.innerText = 'Submitting...';
     
         // Clear previous validation errors
-        const fields = ['student_name', 'date_of_birth', 'contact', 'class', 'performance', 'attendance', 'address'];
+        const fields = ['student_name', 'date_of_birth', 'contact', 'class', 'performance', 'attendance', 'address','student_email'];
         const storeStudentUrl = "{{ route('students.store') }}";
         
         fields.forEach(id => {
@@ -1228,6 +1236,8 @@
             performance: document.getElementById('performance').value,
             attendance: document.getElementById('attendance').value,
             address: document.getElementById('address').value,
+            student_email: document.getElementById('student_email').value,
+            status: document.getElementById('status').value,
         };
     
         axios.post(storeStudentUrl, formData)

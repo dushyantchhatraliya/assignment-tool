@@ -333,7 +333,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm font-medium text-gray-500">Total Students</p>
-                                    <h3 class="text-2xl font-bold text-gray-900">128</h3>
+                                    <h3 class="text-2xl font-bold text-gray-900" id="total-students"></h3>
                                 </div>
                             </div>
                             <div class="mt-4 flex items-center text-sm">
@@ -353,7 +353,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm font-medium text-gray-500">Average Performance</p>
-                                    <h3 class="text-2xl font-bold text-gray-900">76%</h3>
+                                    <h3 class="text-2xl font-bold text-gray-900" id="average-performance">0%</h3>
                                 </div>
                             </div>
                             <div class="mt-4 flex items-center text-sm">
@@ -373,7 +373,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm font-medium text-gray-500">Attendance Rate</p>
-                                    <h3 class="text-2xl font-bold text-gray-900">92%</h3>
+                                    <h3 class="text-2xl font-bold text-gray-900" id="attendance-rate">0%</h3>
                                 </div>
                             </div>
                             <div class="mt-4 flex items-center text-sm">
@@ -393,7 +393,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm font-medium text-gray-500">At-Risk Students</p>
-                                    <h3 class="text-2xl font-bold text-gray-900">12</h3>
+                                    <h3 class="text-2xl font-bold text-gray-900" id="at-risk-students">0</h3>
                                 </div>
                             </div>
                             <div class="mt-4 flex items-center text-sm">
@@ -411,12 +411,85 @@
                         <div class="flex items-center justify-between mb-4">
                             <h2 class="text-lg font-medium text-gray-900">Performance Distribution</h2>
                             <div class="relative">
-                                <button class="text-gray-400 hover:text-gray-500 flex items-center text-sm">
+                                 {{-- <select id="status" name="status"
+                                class="appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="active">All Class</option>
+                                @for ($i = 1; $i <= 12; $i++)
+                                    <option value="{{ $i }}">Class {{ $i }}</option>
+                                @endfor
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
+                                <i class="ri-arrow-down-s-line text-lg"></i>
+                            </div> --}}
+                                {{-- <button class="text-gray-400 hover:text-gray-500 flex items-center text-sm">
                                     All Classes
                                     <div class="w-4 h-4 ml-1 flex items-center justify-center">
                                         <i class="ri-arrow-down-s-line"></i>
                                     </div>
-                                </button>
+                                </button> --}}
+
+                                <!-- Alpine.js Dropdown -->
+                    <div x-data="{
+                            open: false,
+                            selected: 'All Classes',
+                            searchTerm: '',
+                            classes: ['All Classes', ...Array.from({length: 12}, (_, i) => ({
+                                display: `Class ${i+1}`,
+                                value: i+1
+                            }))]
+                        }" 
+                        class="relative inline-block text-left w-40">
+                        
+                        <!-- Dropdown Button -->
+                        <button @click="open = !open"
+                            class="text-gray-700 hover:text-gray-900 flex items-center text-sm focus:outline-none w-full justify-between">
+                            <span x-text="selected" class="truncate"></span>
+                            <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                                <i class="ri-arrow-down-s-line text-sm"></i>
+                            </div>
+                        </button>
+
+                        <!-- Dropdown List -->
+                        <div x-show="open" @click.outside="open = false"
+                            class="absolute z-10 mt-1 w-48 rounded-md bg-white shadow-lg border border-gray-200">
+                            
+                            <!-- Search Box -->
+                            <div class="p-1 border-b border-gray-200">
+                                <input 
+                                    x-model="searchTerm"
+                                    type="text" 
+                                    placeholder="Search class..."
+                                    class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    @click.stop
+                                >
+                            </div>
+                            
+                            <!-- Scrollable List -->
+                            <ul class="py-1 text-xs text-gray-700 max-h-48 overflow-y-auto">
+                                <template x-for="item in classes.filter(c => {
+                                    if (c === 'All Classes') return 'All Classes'.toLowerCase().includes(searchTerm.toLowerCase());
+                                    return c.display.toLowerCase().includes(searchTerm.toLowerCase());
+                                })" :key="item === 'All Classes' ? 'All Classes' : item.value">
+                                    <li 
+                                        @click="
+                                            selected = item === 'All Classes' ? 'All Classes' : item.display;
+                                            open = false;
+                                            const event = new CustomEvent('class-selected', { 
+                                                detail: { 
+                                                    className: item === 'All Classes' ? '' : item.value.toString() 
+                                                } 
+                                            });
+                                            document.dispatchEvent(event);
+                                        " 
+                                        class="px-2 py-1 hover:bg-gray-100 cursor-pointer"
+                                        :class="{'bg-blue-50': selected === (item === 'All Classes' ? 'All Classes' : item.display)}"
+                                    >
+                                        <span x-text="item === 'All Classes' ? 'All Classes' : item.display" class="truncate"></span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
                             </div>
                         </div>
                         <div class="h-80" id="performance-distribution-chart"></div>
@@ -800,14 +873,38 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const chartEl = document.getElementById('performance-distribution-chart');
-            const performanceChart = echarts.init(chartEl);
-        
-            const loadChart = (classFilter = '') => {
-                fetch(`api/chart/performance?class=${encodeURIComponent(classFilter)}`)
-                    .then(res => res.json())
-                    .then(data => {
+            document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const chartEl = document.getElementById('performance-distribution-chart');
+                if (!chartEl) {
+                    console.error('Chart element not found');
+                    return;
+                }
+                
+                if (typeof echarts === 'undefined') {
+                    console.error('ECharts library not loaded');
+                    return;
+                }
+
+                const performanceChart = echarts.init(chartEl);
+
+                const loadChart = async (classFilter = '') => {
+                    try {
+                        // Clear any existing chart data first
+                        performanceChart.clear();
+                        
+                        const response = await fetch(`api/chart/performance?class=${encodeURIComponent(classFilter)}`);
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        const data = await response.json();
+                        const totalStudentsEl = document.getElementById('total-students'); 
+                        const averagePerformanceEl = document.getElementById('average-performance'); 
+                        const attendanceRateEl = document.getElementById('attendance-rate'); 
+                        const isAtRiskEl = document.getElementById('at-risk-students'); 
+
+                         totalStudentsEl.textContent = data.totalStudent; // Update the HTML element 
+                         averagePerformanceEl.textContent = data.studentAvgPer;
+                          attendanceRateEl.textContent = data.average_attendance_rate
+                          isAtRiskEl.textContent = data.is_at_risk
                         const option = {
                             tooltip: {
                                 trigger: 'axis',
@@ -847,25 +944,48 @@
                                 },
                                 emphasis: {
                                     itemStyle: { opacity: 0.8 }
-                                }
+                                },
+                                // Animation configuration
+                                animation: true,
+                                animationDuration: 1000,
+                                animationEasing: 'cubicOut'
                             }))
                         };
-                        performanceChart.setOption(option);
-                    });
-            };
+                        
+                        // Apply new options
+                        performanceChart.setOption(option, true); // true means not to merge with previous options
+                        
+                    } catch (error) {
+                        console.error('Error loading chart data:', error);
+                        // Optionally show an error state on the chart
+                        performanceChart.showLoading('error', {
+                            text: 'Failed to load data',
+                            color: '#ff4d4f',
+                            textColor: '#ff4d4f',
+                            maskColor: 'rgba(255, 255, 255, 0.8)'
+                        });
+                    }
+                };
+
+                // Initial load
+                loadChart();
+
+                // Listen for Alpine.js dropdown selections
+                document.addEventListener('class-selected', (e) => {
+                    loadChart(e.detail.className);
+                });
+
+                // Resize on window resize
+                window.addEventListener('resize', () => performanceChart.resize());
+                
+            } catch (error) {
+                console.error('Error initializing chart:', error);
+            }
+});
+    </script>
         
-            // Initial load
-            loadChart();
-        
-            // On dropdown change
-            document.getElementById('classFilter').addEventListener('change', function () {
-                loadChart(this.value);
-            });
-        
-            // Resize on window resize
-            window.addEventListener('resize', () => performanceChart.resize());
-        });
-        </script>
-        
-</body>
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+    </body>
 </html>
